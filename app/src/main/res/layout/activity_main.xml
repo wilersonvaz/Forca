@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Telas.MainActivity">
+
+    <TextView
+        android:id="@+id/idApresentacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Forca"
+        android:textSize="70sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/idTxtNivelJogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Nível do jogo"
+        android:textSize="35sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idApresentacao"
+        android:layout_margin="10dp"/>
+
+    <!-- <Spinner
+        android:id="@+id/idNivelJogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo"
+        android:layout_margin="10dp" /> -->
+
+    <LinearLayout
+        android:id="@+id/lIdNivelJogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/redondo"
+        android:padding="5dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo">
+
+        <RadioGroup
+            android:id="@+id/idNivelJogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo">
+
+            <RadioButton
+                android:id="@+id/idFacil"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Fácil"
+                android:textColor="@color/black"
+                android:checked="true"/>
+
+            <RadioButton
+                android:id="@+id/idMedio"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="Médio"
+                android:textColor="@color/black" />
+
+            <RadioButton
+                android:id="@+id/idDificil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Difícil"
+                android:textColor="@color/black" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/idTxtQtdeRodadas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Quantas rodadas quer jogar?"
+        android:textSize="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lIdNivelJogo"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/idQtdeRodadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_row="1"
+        android:layout_column="0"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Quantidade de Rodadas"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idTxtQtdeRodadas"
+        android:inputType="text" />    
+
+    <!-- <SeekBar
+        android:id="@+id/idQtdeRodadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idTxtQtdeRodadas" 
+        android:max="15" 
+        android:progress="1"
+        android:layout_margin="10dp"/> -->
+
+    <Button
+        android:id="@+id/btnJogar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/redondo"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:text="JOGAR"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/idQtdeRodadas"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
