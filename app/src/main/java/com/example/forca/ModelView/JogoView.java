@@ -1,54 +1,88 @@
 package com.example.forca.ModelView;
 
-import android.util.Log;
-
 import com.example.forca.Model.Jogo;
 
-public class JogoView<jogo> {
-	Jogo jogo;
+import java.util.ArrayList;
 
-	public JogoView(Jogo jogo) {
-		this.jogo = jogo;
+public class JogoView<jogo> {
+	String plvServidor, plvTela, letraDigitada;
+	
+
+	public JogoView() {
+
 	}
 
+	public JogoView(String plvServidor, String plvTela, String letraDigitada) {
+		this.plvServidor = plvServidor;
+		this.plvTela = plvTela;
+		this.letraDigitada = letraDigitada;
+	}
+
+	
+
 	public Jogo jogar(){
+		Jogo jogo = new Jogo();
+		
 		try{
-			Log.i("Log # ", "JogoView: "+jogo.getPalavra().getPalavra()+" "+jogo.getPalavraTl()+" "+jogo.getLetraTl() );
+			// Log.i("Log # ", "Entrou no JogoView plvServidor: "+this.plvServidor+" plvTela: "+this.plvTela+" letraDigitada: "+this.letraDigitada);
 			
-			String pl = jogo.getPalavra().getPalavra();
-			String l = jogo.getLetraTl();
-			String[] str = jogo.getPalavraTl().split(" ");
-			String oldString = jogo.getPalavraTl().replaceAll(" ","");
-			String newString = "";
-			Log.i("Log # ", "oldString: "+oldString);
-			char[] charArray = oldString.toCharArray();
-			// for(int i = 0; i < jogo.getPalavraTl().length(); i++){
-			// 	Log.i("Log # ", "A string separada: "+str[i]);
-			// }
-			if(pl.contains(l)){
-				for(int i = 0; i < pl.length(); i++){
-					if(pl.substring(i,i+1).equals(l)){
-						charArray[i] = l.charAt(0);
+			
+			this.plvTela = this.plvTela.replaceAll(" ","");
+			// Log.i("Log # ", "plvTela: "+this.plvTela);
+			
+			ArrayList<String> arrayPalavra = new ArrayList<String>();
 
-						newString = String.valueOf(charArray);
+			for (int i = 0; i <  this.plvTela.length(); i++){
+				arrayPalavra.add( Character.toString( this.plvTela.charAt(i) ) );
+				// Log.i("Log # ", "arrayPalavra iniciando com : "+arrayPalavra.get(i));
+			}
 
-						Log.i("Log # ", "newString: "+newString);
-					}
+			if((plvServidor.contains(letraDigitada) || plvServidor.contains( letraDigitada.toLowerCase() )) ){
+				// Log.i("Log # ", "A letra "+letraDigitada+" existe e a plvTela agora é: "+plvTela);
+				
+				for(int i = 0; i < this.plvServidor.length(); i++){
+					// Log.i("Log # ", "Letra do servidor: "+this.plvServidor.charAt(i)+" "+Character.toLowerCase( this.plvServidor.charAt(i) )+" substring: "+this.plvServidor.substring(i,i+1)+" letra digitada: "+letraDigitada);
+					
+		 			if( ( letraDigitada.equals( Character.toString( this.plvServidor.charAt(i) ))) || (letraDigitada.toLowerCase().equals( Character.toString( this.plvServidor.charAt(i) )))) {
+						// Log.i("Log # ", "A letra "+letraDigitada+" existe, Adicionando a letra: "+Character.toString( this.plvServidor.charAt(i))+" no arrayPalavra");
+						arrayPalavra.set(i, Character.toString( this.plvServidor.charAt(i)) );
+					}					
 				}
+				
+				String newString = "";
+				
+				for (int i = 0; i <  this.plvTela.length(); i++){
+					newString += arrayPalavra.get(i);					
+				}
+				
 				jogo.setLetraTl(newString);
+				jogo.setQtdeLetras(this.plvServidor.length());
 				jogo.setAcertaLetra(true);				
 				
 			}else{
+				// Log.i("Log # ", "A letra "+letraDigitada+" não existe");
 				jogo.setAcertaLetra(false);
 			}
-			int i = jogo.getTentativa()+1;
-			jogo.setTentativa(i);
+
+			
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 
-		return this.jogo;
+		return jogo;
 	}
 
+	public String criaPalavraTela(String sTring){
+        String str = "";
+        try{
+            for(int i = 0; i < sTring.length(); i++){
+                str+="_";
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return str;
+    }
 
 }

@@ -6,15 +6,6 @@ import com.example.forca.Model.Palavra;
 
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-
 
 public class PalavraView {
     Palavra palavra;
@@ -28,62 +19,77 @@ public class PalavraView {
         StringBuffer buffer = new StringBuffer();
         try {
 
-            String urlPalavra = palavra.getUrlPalavra();
+            // String urlPalavra = palavra.getUrlPalavra();
+
+            // URL url = new URL(urlPalavra);
+
+            // HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            // urlConnection.setRequestMethod("GET");
+            // urlConnection.connect();
+
+            // InputStream inputStream = urlConnection.getInputStream();
+            // if (inputStream == null) {
+            //   return null;
+            // }
+
+            // BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
             
-            URL url = new URL(urlPalavra);
+            // String linha;
+            // while ((linha = reader.readLine()) != null) {
+            //     try {
+            //         buffer.append(linha);
+            //     } catch (Exception e) {
+            //         e.printStackTrace();
+            //     }
+            // }
 
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+            // s = buffer.toString();
 
-            InputStream inputStream = urlConnection.getInputStream();
-            if (inputStream == null) {
-               return null;
-            }
+            // s = s.replace("[","");
+            // s = s.replace("]","");
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                try {
-                    buffer.append(linha);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+            // JSONObject jsonObj = new JSONObject(s);
 
-            s = buffer.toString();
+            // palavra.setIdPalavra(Integer.parseInt( jsonObj.getString("Id") ));
+            // palavra.setPalavra( jsonObj.getString("Palavra") );
+            // palavra.setLetras(Integer.parseInt( jsonObj.getString("Letras") ));
+            // palavra.getIdentificador().setNivelJogo( Integer.parseInt( jsonObj.getString("Nivel") ));
 
-            s = s.replace("[","");
-            s = s.replace("]","");
+            
+            // reader.close();
 
-            JSONObject jsonObj = new JSONObject(s);
+
+            // if (buffer.length() == 0) {
+            //    return null;
+            // }
+
+            // if (urlConnection != null) {
+            //     urlConnection.disconnect();
+            // }
+
+
+
+            String st = "{\"Id\": 69, \"Palavra\": \"Desenvolvimento\", \"Letras\": 15, \"Nivel\": 3}";
+
+            JSONObject jsonObj = new JSONObject(st);
 
             palavra.setIdPalavra(Integer.parseInt( jsonObj.getString("Id") ));
             palavra.setPalavra( jsonObj.getString("Palavra") );
-            palavra.setLetras(Integer.parseInt( jsonObj.getString("Letras") ));
+//            palavra.setLetras(Integer.parseInt( jsonObj.getString("Letras") ));
             palavra.getIdentificador().setNivelJogo( Integer.parseInt( jsonObj.getString("Nivel") ));
-
             
-            reader.close();
 
-
-            if (buffer.length() == 0) {
-               return null;
-            }
-
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-
-        } catch (ProtocolException e) {
-            Log.i("Log #", "ProtocolException "+String.valueOf(e));
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            Log.i("Log #", "MalformedURLException "+String.valueOf(e));
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.i("Log #", "IOException "+String.valueOf(e));
-            e.printStackTrace();
+        // } catch (ProtocolException e) {
+        //     Log.i("Log #", "ProtocolException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // } catch (MalformedURLException e) {
+        //     Log.i("Log #", "MalformedURLException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // } catch (IOException e) {
+        //     Log.i("Log #", "IOException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // 
         }catch (Exception e){
             Log.i("Log #", "Exception "+String.valueOf(e));
             e.printStackTrace();

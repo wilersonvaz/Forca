@@ -5,7 +5,7 @@ public class Palavra {
     int idPalavra;
     String palavra;
     String urlPalavra;
-    int letras;
+    int qtdeLetras;
 
     public Identificador getIdentificador() {
         return identificador;
@@ -39,11 +39,11 @@ public class Palavra {
         this.urlPalavra = urlPalavra;
     }
 
-    public int getLetras() {
-        return letras;
+    public int getQtdeLetras() {
+        return qtdeLetras;
     }
 
-    public void setLetras(int letras) {
-        this.letras = letras;
+    public void setQtdeLetras(int qtdeLetras) {
+        this.qtdeLetras = qtdeLetras;
     }
 }

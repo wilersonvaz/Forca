@@ -27,69 +27,70 @@ public class IdentificadorView {
 
     public String getUrlPalavra() {
         StringBuffer buffer = new StringBuffer();
-        try {
+        // try {
 
-            String urlIdentificador = identificador.getUrlIdentificador();
+        //     String urlIdentificador = identificador.getUrlIdentificador();
 
-            Log.i("Log # ", "urlIdentificador: "+urlIdentificador);
+        //     Log.i("Log # ", "urlIdentificador: "+urlIdentificador);
 
-            URL url = new URL(urlIdentificador);
+        //     URL url = new URL(urlIdentificador);
 
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
+        //     HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        //     urlConnection.setRequestMethod("GET");
+        //     urlConnection.connect();
 
-            InputStream inputStream = urlConnection.getInputStream();
-            if (inputStream == null) {
-               return null;
-            }
+        //     InputStream inputStream = urlConnection.getInputStream();
+        //     if (inputStream == null) {
+        //        return null;
+        //     }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String linha;
-            while ((linha = reader.readLine()) != null) {
-                try {
-                    buffer.append(linha);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+        //     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        //     String linha;
+        //     while ((linha = reader.readLine()) != null) {
+        //         try {
+        //             buffer.append(linha);
+        //         } catch (Exception e) {
+        //             e.printStackTrace();
+        //         }
+        //     }
 
-            String s = buffer.toString();
+        //     String s = buffer.toString();
 
-            s = s.replace("[","");
-            s = s.replace("]","");
-            ArrayList<String> myList = new ArrayList<String>(Arrays.asList(s.split(",")));
+        //     s = s.replace("[","");
+        //     s = s.replace("]","");
+        //     ArrayList<String> myList = new ArrayList<String>(Arrays.asList(s.split(",")));
 
-            Random random = new Random();
-            int palavra = Integer.parseInt(myList.get(random.nextInt(myList.size())).trim());
+        //     Random random = new Random();
+        //     int palavra = Integer.parseInt(myList.get(random.nextInt(myList.size())).trim());
 
-            urlPalavra = "http://nobile.pro.br/forcaws/palavra/"+palavra;
+        //     urlPalavra = "http://nobile.pro.br/forcaws/palavra/"+palavra;
 
-            Log.i("Log # ", "urlPalavra: "+urlPalavra);
+        //     Log.i("Log # ", "urlPalavra: "+urlPalavra);
 
-            reader.close();
+        //     reader.close();
 
-            if (buffer.length() == 0) {
-               return null;
-            }
+        //     if (buffer.length() == 0) {
+        //        return null;
+        //     }
 
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
+        //     if (urlConnection != null) {
+        //         urlConnection.disconnect();
+        //     }
 
-        } catch (ProtocolException e) {
-            Log.i("Log #", "ProtocolException "+String.valueOf(e));
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            Log.i("Log #", "MalformedURLException "+String.valueOf(e));
-            e.printStackTrace();
-        } catch (IOException e) {
-            Log.i("Log #", "IOException "+String.valueOf(e));
-            e.printStackTrace();
-        }catch (Exception e){
-            Log.i("Log #", "Exception "+String.valueOf(e));
-            e.printStackTrace();
-        }
+        // } catch (ProtocolException e) {
+        //     Log.i("Log #", "ProtocolException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // } catch (MalformedURLException e) {
+        //     Log.i("Log #", "MalformedURLException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // } catch (IOException e) {
+        //     Log.i("Log #", "IOException "+String.valueOf(e));
+        //     e.printStackTrace();
+        // }catch (Exception e){
+        //     Log.i("Log #", "Exception "+String.valueOf(e));
+        //     e.printStackTrace();
+        // }
+        String urlPalavra = "";
 
         return urlPalavra;
 

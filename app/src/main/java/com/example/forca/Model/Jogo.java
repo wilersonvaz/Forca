@@ -2,14 +2,19 @@ package com.example.forca.Model;
 
 public class Jogo {
 	Palavra palavra;
+	//As tentativas verificam se as letras digitas existem
 	private int tentativa;
+	//à cada rodada uma nova palavra
+	private int rodada;
 	private int nivelJogo;
-	private int corpo;
-	//Recebem a palavra exposta na tela e letra digitada pelo usuário
-	private String palavraTl;
+	private int qtdeLetras;
+	//Recebe a letra digitada pelo usuário;
 	private String letraTl;
+	//Recebe a palavra da tela, (as que resultam do jogo)
+	private String palavraTl;
+	//Verifica no final se o usuário acertou ou errou a letra
 	private boolean acertaLetra;
-
+	
 	public Palavra getPalavra() {
 		return palavra;
 	}
@@ -34,20 +39,12 @@ public class Jogo {
 		this.nivelJogo = nivelJogo;
 	}
 
-	public int getCorpo() {
-		return corpo;
+	public int getRodada() {
+		return rodada;
 	}
 
-	public void setCorpo(int corpo) {
-		this.corpo = corpo;
-	}
-
-	public String getPalavraTl() {
-		return palavraTl;
-	}
-
-	public void setPalavraTl(String palavraTl) {
-		this.palavraTl = palavraTl;
+	public void setRodada(int rodada) {
+		this.rodada = rodada;
 	}
 
 	public String getLetraTl() {
@@ -58,11 +55,27 @@ public class Jogo {
 		this.letraTl = letraTl;
 	}
 
+	public String getPalavraTl() {
+		return palavraTl;
+	}
+
+	public void setPalavraTl(String palavraTl) {
+		this.palavraTl = palavraTl;
+	}
+
 	public boolean isAcertaLetra() {
 		return acertaLetra;
 	}
 
 	public void setAcertaLetra(boolean acertaLetra) {
 		this.acertaLetra = acertaLetra;
+	}
+
+	public int getQtdeLetras() {
+		return qtdeLetras;
+	}
+
+	public void setQtdeLetras(int qtdeLetras) {
+		this.qtdeLetras = qtdeLetras;
 	}
 }

@@ -28,21 +28,21 @@ public class MainActivity extends AppCompatActivity {
         idDificil = (RadioButton) findViewById(R.id.idDificil);
         qtdeRodadas = (EditText) findViewById(R.id.idQtdeRodadas);
 
-        btnJogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        // btnJogar.setOnClickListener(new View.OnClickListener() {
+        //     @Override
+        //     public void onClick(View view) {
                 
-                if(idFacil.isChecked()){
-                    nivelJogo = 1;
-                }
+        //         if(idFacil.isChecked()){
+        //             nivelJogo = 1;
+        //         }
 
-                if(idMedio.isChecked()){
-                    nivelJogo = 2;
-                }
+        //         if(idMedio.isChecked()){
+        //             nivelJogo = 2;
+        //         }
 
-                if(idDificil.isChecked()){
-                    nivelJogo = 3;
-                }
+        //         if(idDificil.isChecked()){
+        //             nivelJogo = 3;
+        //         }
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("nivelJogo", nivelJogo);
@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), JogoActivity.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
-            }
-        });
+        //     }
+        // });
            
 
     }
