@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#D3D3D3</color>
     <color name="btnJogar">#FF6600</color>
+    <color name="hangman">#483D8D</color>
+    <color name="botoes">#363636</color>
+    <color name="botaoNovoJogo">#6B8E23</color>
+    <color name="botaoFinalizar">#B22222</color>
 </resources>
