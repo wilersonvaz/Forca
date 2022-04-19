@@ -20,19 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtIniciar = (TextView) findViewById(R.id.txtIniciar);
-
-       
-        // btnConfigurar = (Button) findViewById(R.id.btnConfigurar);
-
-        // btnConfigurar.setOnClickListener(new View.OnClickListener() {
-        //     @Override
-        //     public void onClick(View view) {
-                
-                // Intent intent = new Intent(getApplicationContext(), ConfiguracoesActivity.class);
-                // // intent.putExtras(bundle);
-                // startActivity(intent);
-        //     }
-        // });
            
 
     }

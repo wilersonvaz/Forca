@@ -46,35 +46,6 @@ public class ConfiguracoesActivity extends AppCompatActivity implements AdapterV
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         idQtdeRodadas.setAdapter(aa);
-
-        // qtdeRodadas = (EditText) findViewById(R.id.idQtdeRodadas);
-
-        // btnJogar.setOnClickListener(new View.OnClickListener() {
-        //     @Override
-        //     public void onClick(View view) {
-                
-        //         if(idFacil.isChecked()){
-        //             nivelJogo = 1;
-        //         }
-
-        //         if(idMedio.isChecked()){
-        //             nivelJogo = 2;
-        //         }
-
-        //         if(idDificil.isChecked()){
-        //             nivelJogo = 3;
-        //         }
-
-//                 Bundle bundle = new Bundle();
-//                 bundle.putInt("nivelJogo", nivelJogo);
-// //                bundle.putInt("qtdeRodadas", Integer.parseInt( qtdeRodadas.getText().toString() ));
-//                 bundle.putInt("qtdeRodadas", 7);
-
-//                 Intent intent = new Intent(getApplicationContext(), JogoActivity.class);
-//                 intent.putExtras(bundle);
-//                 startActivity(intent);
-        //     }
-        // });
            
     }
 
