@@ -8,43 +8,7 @@
     android:orientation="vertical"
     tools:context=".Telas.ConfiguracoesActivity">
 
-    <!-- <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:background="@drawable/redondo">
-
-        
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/hangman"
-        android:orientation="vertical"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:layout_marginTop="100dp">
-
-        <TextView
-            android:id="@+id/txtIniciar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center"
-            android:background="@drawable/botoes"
-            android:textSize="25dp"
-            android:textColor="@color/white"
-            android:padding="15dp"
-            android:text="JOGAR"
-            android:layout_marginTop="20dp"
-            android:onClick="onClick"
-            android:clickable="true"
-            tools:ignore="OnClick" />
- 
-    </LinearLayout> -->
+    
 
     <LinearLayout
         android:layout_width="match_parent"

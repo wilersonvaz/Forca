@@ -23,6 +23,7 @@ public class PalavraView {
     }
 
     public Palavra getDadosPalavraFromServidor() {
+        Log.i("Log # ","Entrou na getDadosPalavraFromServidor");
         String s = null;
         String pl = null;
         StringBuffer buffer = new StringBuffer();
