@@ -1,5 +1,7 @@
 package com.example.forca.ModelView;
 
+import android.util.Log;
+
 import com.example.forca.Model.Jogo;
 
 import java.util.ArrayList;
@@ -24,8 +26,6 @@ public class JogoView<jogo> {
 		Jogo jogo = new Jogo();
 		
 		try{
-			// Log.i("Log # ", "Entrou no JogoView plvServidor: "+this.plvServidor+" plvTela: "+this.plvTela+" letraDigitada: "+this.letraDigitada);
-			
 			
 			this.plvTela = this.plvTela.replaceAll(" ","");
 			// Log.i("Log # ", "plvTela: "+this.plvTela);

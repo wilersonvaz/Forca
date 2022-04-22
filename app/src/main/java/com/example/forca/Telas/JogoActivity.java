@@ -3,12 +3,10 @@ package com.example.forca.Telas;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +29,7 @@ public class JogoActivity extends AppCompatActivity {
     String str;
     int nivelJogo;
     int qtdeRodadas;
-    TextView txtPalavra, idRodadas, txtIdMensagem, txtIdTentativas, txtIdNovaPalavra;
+    TextView txtPalavra, idRodadas, txtIdMensagem, txtIdNovaPalavra;
     EditText edtLetra;
     // Button btnLetra;
     int acertaLetra = 0, erroLetra = 0, contRodadas = 0, contJogadas = 0, acertaPalavra = 0, erroPalavra = 0, tentativas = 0;
@@ -41,7 +39,8 @@ public class JogoActivity extends AppCompatActivity {
     public static String urlIdentificador = "http://nobile.pro.br/forcaws/identificadores/";
     public static String urlPalavraFinal = "http://nobile.pro.br/forcaws/palavra/";
     ArrayList idPalavraJaDigitada = new ArrayList();
-    boolean jogando = false;
+    ArrayList<String> letraJaDigitada = new ArrayList<String>();
+    Boolean jogando = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class JogoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jogo);
 
         idRodadas = (TextView) findViewById(R.id.idRodadas);
-        txtIdTentativas = (TextView) findViewById(R.id.txtIdTentativas);
+        // txtIdTentativas = (TextView) findViewById(R.id.txtIdTentativas);
         txtIdNovaPalavra = (TextView) findViewById(R.id.txtIdNovaPalavra);
         txtPalavra = (TextView) findViewById(R.id.txtPalavra);
         resultadoImg = (ImageView) findViewById(R.id.resultadoImg);
@@ -63,7 +62,6 @@ public class JogoActivity extends AppCompatActivity {
         try{
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
-                Log.i("Log # ", "Estamos na buscaPalavraServidor");
                 
                 nivelJogo = bundle.getInt("nivelJogo");
                 qtdeRodadas = bundle.getInt("qtdeRodadas");
@@ -94,7 +92,6 @@ public class JogoActivity extends AppCompatActivity {
                 PalavraView palavraView = new PalavraView(palavra);
                 //String que recebe a palavra do servidor
 
-                Log.i("Log # ","idPalavraJaDigitada: "+idPalavraJaDigitada );
                 boolean palavraJaUsada = false;
                 while(!palavraJaUsada){
                     Palavra p = palavraView.getDadosPalavraFromServidor();
@@ -107,22 +104,19 @@ public class JogoActivity extends AppCompatActivity {
                     plvTela = jogoview.criaPalavraTela(plvServidor);
                     txtPalavra.setText( plvTela );
 
-                    Log.i("Log # ","inserindo idPalavraJaDigitada: "+idPalavraJaDigitada );
                     if(!idPalavraJaDigitada.contains(p.getIdPalavra())){
                         idPalavraJaDigitada.add(p.getIdPalavra());
                         
                         idRodadas.setText("Rodada "+( contRodadas+1) );
 
                         palavraJaUsada = true;
-                    }else{
-                        Log.i("Log # ","idPalavraJaDigitada já usada, procurando de novo: "+idPalavraJaDigitada );
-                    
+                        jogando = true;
                     }
                     
                 }    
 
                 
-                jogando = true;
+                
             }
 
         }catch(Exception e){
@@ -133,7 +127,6 @@ public class JogoActivity extends AppCompatActivity {
     public void onClick(View v) {
         if(contRodadas == qtdeRodadas){
                 
-            Log.i("Log # ", "indo para o relatório");
             Relatorio relatorio = new Relatorio(acertaPalavra, erroPalavra, tentativas, qtdeRodadas);
             Intent intent = new Intent(getApplicationContext(), RelatorioActivity.class);
             intent.putExtra("relatorio", relatorio);
@@ -143,8 +136,9 @@ public class JogoActivity extends AppCompatActivity {
             txtIdNovaPalavra.setTextColor(getResources().getColor(R.color.black));
             txtIdNovaPalavra.setClickable(false); 
             txtIdMensagem.setText("Boa sorte!");
+            letraJaDigitada.clear();
             mudaImagem(forca, 6);
-            buscaPalavraServidor();    
+            buscaPalavraServidor();               
         }  
         
     }
@@ -152,8 +146,9 @@ public class JogoActivity extends AppCompatActivity {
     public void touchLetter(View v) throws InterruptedException {
 
         try{
-        
-            if(jogando){
+            
+            if(jogando == true){
+            
                 Random random = new Random();
 
                 int errorMessage = random.nextInt(arrayErrorMessage.length);
@@ -161,95 +156,93 @@ public class JogoActivity extends AppCompatActivity {
                 int acertaMessage = random.nextInt(arrayAcertaMessage.length);
 
                 String letraDigitada = ((Button) v).getText().toString();
-                
-                // Jogo jogo = new Jogo();
-            
-                plvTela = txtPalavra.getText().toString();
-                JogoView jogoview = new JogoView(plvServidor, plvTela, letraDigitada);
-                if(contJogadas == 0){
-                  txtPalavra.setText( jogoview.criaPalavraTela( plvTela ) );  
-                } 
 
-                Jogo jogo = jogoview.jogar();            
+                if(letraJaDigitada.contains(letraDigitada)){
+                    txtIdMensagem.setText("Essa letra já foi digitada!");
+                }else{
+                    // Jogo jogo = new Jogo();
+                    plvTela = txtPalavra.getText().toString();
+                    JogoView jogoview = new JogoView(plvServidor, plvTela, letraDigitada);
+                    if(contJogadas == 0){
+                      txtPalavra.setText( jogoview.criaPalavraTela( plvTela ) );  
+                    } 
 
+                    Jogo jogo = jogoview.jogar();            
 
-                if(!jogo.isAcertaLetra()){
+                    if(!jogo.isAcertaLetra()){
 
-                    txtIdMensagem.setText(arrayErrorMessage[errorMessage]);
+                        txtIdMensagem.setText(arrayErrorMessage[errorMessage]);
 
-                    switch(erroLetra){
-                        case 0:
-                            mudaImagem(cabeca, erroLetra);
-                            break;
-                        case 1:
-                            mudaImagem(tronco, erroLetra);
-                            break;
-                        case 2:
-                            mudaImagem(bracodireito, erroLetra);
-                            break;
-                        case 3:
-                            mudaImagem(bracos, erroLetra);
-                            break;
-                        case 4:
-                            mudaImagem(pernadireita, erroLetra);
-                            break;
-                        case 5:
-                            mudaImagem(corpo, erroLetra);
-                            break;                
-                        default:
-                            mudaImagem(forca, 6);
+                        switch(erroLetra){
+                            case 0:
+                                mudaImagem(cabeca, erroLetra);
+                                break;
+                            case 1:
+                                mudaImagem(tronco, erroLetra);
+                                break;
+                            case 2:
+                                mudaImagem(bracodireito, erroLetra);
+                                break;
+                            case 3:
+                                mudaImagem(bracos, erroLetra);
+                                break;
+                            case 4:
+                                mudaImagem(pernadireita, erroLetra);
+                                break;
+                            case 5:
+                                mudaImagem(corpo, erroLetra);
+                                break;                
+                            default:
+                                mudaImagem(forca, 6);
+                        }
+
+                        erroLetra++; 
+                        
+                        
+                        if(erroLetra >= 6){
+                            
+                            txtIdNovaPalavra.setTextColor(getResources().getColor(R.color.botaoNovoJogo));
+                            txtIdNovaPalavra.setClickable(true);
+                            // mudaImagem(forca, erroLetra);
+                            contRodadas++;                    
+                            erroLetra = 0;
+                            acertaLetra = 0;
+                            contJogadas = -1;
+                            erroPalavra++;
+                            txtIdMensagem.setText("Essa não deu, clique em Próxima palavra para procurar outra palavra!");
+                            jogando = false;
+                            
+                        }           
+                        
+
+                    }else{
+                        
+                        acertaLetra++;
+                        txtPalavra.setText( jogo.getLetraTl() );   
+                        int contaLetras = txtPalavra.getText().toString().replace("_","").length();
+                        txtIdMensagem.setText(arrayAcertaMessage[acertaMessage]);
+                        
+                        if(contaLetras == jogo.getQtdeLetras()){
+                            
+                            txtIdNovaPalavra.setTextColor(getResources().getColor(R.color.botaoNovoJogo));                    
+                            txtIdNovaPalavra.setClickable(true);             
+                            contRodadas++;
+                            // mudaImagem(forca, 6);            
+                            erroLetra = 0;
+                            acertaLetra = 0;
+                            acertaPalavra++;
+                            txtIdMensagem.setText("Você acertou, clique em Próxima palavra para procurar outra palavra!");
+                            jogando = false;
+                            
+                        }     
+                            
                     }
 
-                    erroLetra++; 
-                    
-                    
-                    if(erroLetra >= 6){
-                        
-                        txtIdNovaPalavra.setTextColor(getResources().getColor(R.color.botaoNovoJogo));
-                        txtIdNovaPalavra.setClickable(true);
-                        // mudaImagem(forca, erroLetra);
-                        contRodadas++;                    
-                        erroLetra = 0;
-                        acertaLetra = 0;
-                        contJogadas = -1;
-                        erroPalavra++;
-                        txtIdMensagem.setText("Essa não deu, clique em Próxima para procurar outra palavra!");
-                        jogando = false;
-                        
-                    }           
-                    
-
-                }else{
-                    
-                    acertaLetra++;
-                    txtPalavra.setText( jogo.getLetraTl() );   
-                    int contaLetras = txtPalavra.getText().toString().replace("_","").length();
-                    txtIdMensagem.setText(arrayAcertaMessage[acertaMessage]);
-                    
-                    if(contaLetras == jogo.getQtdeLetras()){
-                        
-                        txtIdNovaPalavra.setTextColor(getResources().getColor(R.color.botaoNovoJogo));                    
-                        txtIdNovaPalavra.setClickable(true);             
-                        contRodadas++;
-                        // mudaImagem(forca, 6);            
-                        erroLetra = 0;
-                        acertaLetra = 0;
-                        acertaPalavra++;
-                        txtIdMensagem.setText("Você acertou, clique em Próxima para procurar outra palavra!");
-                        jogando = false;
-                        
-                    }     
-                        
+                    contJogadas++; 
+                    tentativas++;   
+                    letraJaDigitada.add(letraDigitada);    
                 }
-
-                contJogadas++; 
-                tentativas++;    
-                Log.i("Log # ", "contRodadas "+contRodadas);
-            
-                txtIdTentativas.setText(String.valueOf( tentativas )+" tentativas ");    
             }
-
-            
 
             
         }catch(Exception e){
