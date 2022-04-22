@@ -23,7 +23,7 @@ public class PalavraView {
     }
 
     public Palavra getDadosPalavraFromServidor() {
-        Log.i("Log # ","Entrou na getDadosPalavraFromServidor");
+        
         String s = null;
         String pl = null;
         StringBuffer buffer = new StringBuffer();
@@ -59,7 +59,6 @@ public class PalavraView {
             s = s.replace("[","");
             s = s.replace("]","");
 
-            Log.i("Log # ", "Palavra do servidor: "+s);
 
             JSONObject jsonObj = new JSONObject(s);
 
