@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,130 +8,159 @@
     android:orientation="vertical"
     tools:context=".Telas.ConfiguracoesActivity">
 
-    
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:orientation="vertical"
-        android:background="@drawable/redondo">
+        android:layout_marginBottom="100dp">
 
-        <TextView
-            android:id="@+id/idTxtNivelJogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Nível do jogo"
-            android:textSize="35sp"
-            android:layout_margin="10dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:id="@+id/lIdNivelJogo"
+        <!-- <LinearLayout
+            android:id="@+id/layoutNivelJogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:background="@drawable/redondo"
-            android:padding="5dp"
-            android:layout_marginBottom="25dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo">
+            android:orientation="vertical"> -->
 
-            <RadioGroup
-                android:id="@+id/idNivelJogo"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo">
+                android:layout_margin="10dp"
+                android:text="Definições"
+                android:textAlignment="center"
+                android:textColor="@color/black"                
+                android:background="@drawable/redondo"
+                android:textSize="35sp" />
 
-                <RadioButton
-                    android:id="@+id/idFacil"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Fácil"
-                    android:textColor="@color/black"
-                    android:checked="true"/>
+        <!-- </LinearLayout> -->
 
-                <RadioButton
-                    android:id="@+id/idMedio"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:text="Médio"
-                    android:textColor="@color/black" />
 
-                <RadioButton
-                    android:id="@+id/idDificil"
+        <LinearLayout
+            android:id="@+id/layoutNivelJogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
+            android:background="@drawable/redondo"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idTxtNivelJogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="Nível do jogo"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/black" />
+
+            <LinearLayout
+                android:id="@+id/lIdNivelJogo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:background="@drawable/redondo"
+                android:padding="5dp">
+
+                <RadioGroup
+                    android:id="@+id/idNivelJogo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Difícil"
-                    android:textColor="@color/black" />
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/idTxtNivelJogo">
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/idFacil"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Fácil"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/idMedio"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:text="Médio"
+                        android:textColor="@color/black" />
+
+                    <RadioButton
+                        android:id="@+id/idDificil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Difícil"
+                        android:textColor="@color/black" />
+
+                </RadioGroup>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="250dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
+        android:background="@drawable/redondo"
+        android:layout_below="@+id/layoutNivelJogo"
         android:orientation="vertical"
-        android:background="@drawable/redondo">
+        tools:ignore="NotSibling">
 
         <TextView
             android:id="@+id/idTxtQtdeRodadas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
             android:text="Rodadas"
-            android:textSize="25sp"
-            android:layout_margin="10dp"/>
+            android:textColor="@color/black"
+            android:textSize="35sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="1px"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
             android:background="@color/black" />
 
         <Spinner
             android:id="@+id/idQtdeRodadas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"/>
+            android:layout_margin="15dp"
+            android:background="@color/white"
+            android:textColor="@color/black" />
 
-        
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/hangman"
         android:orientation="vertical"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:layout_marginTop="50dp">
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/txtJogar"
@@ -145,9 +174,11 @@
             android:padding="15dp"
             android:text="JOGAR"
             android:layout_marginTop="20dp"
+             android:layout_marginBottom="20dp"
             android:onClick="onClick"
             android:clickable="true"
             tools:ignore="OnClick" />
 
     </LinearLayout>
-</LinearLayout >
+
+</RelativeLayout>

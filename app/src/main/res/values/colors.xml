@@ -13,4 +13,6 @@
     <color name="botoes">#363636</color>
     <color name="botaoNovoJogo">#6B8E23</color>
     <color name="botaoFinalizar">#B22222</color>
+    <color name="vermelho">#8B008B</color>
+    <color name="azul">#6959CD</color>
 </resources>

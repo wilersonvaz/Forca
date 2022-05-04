@@ -1,20 +1,47 @@
 package com.example.forca.Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Relatorio implements Serializable {
+	private Palavra palavra;
 	private int acertos;
 	private int erros;
 	private int tentativas;
 	private int totalDeJogadas;
+	ArrayList<Palavra> arrayPalavra;
 
 	
-	public Relatorio(int acertos, int erros, int tentativas, int qtdeRodadas) {
-
+	public Relatorio(ArrayList<Palavra> arrayPalavra, int acertos, int erros, int tentativas, int qtdeRodadas) {
+		this.arrayPalavra = arrayPalavra;
 		this.acertos =acertos;
 		this.erros = erros;
 		this.tentativas = tentativas;
 		this.totalDeJogadas = qtdeRodadas;
+	}
+
+	public Relatorio(Palavra palavra) {
+		this.palavra = palavra;
+	}
+
+	public Relatorio() {
+
+	}
+
+	public ArrayList<Palavra> getArrayPalavra() {
+		return arrayPalavra;
+	}
+
+	public void setArrayPalavra(ArrayList<Palavra> arrayPalavra) {
+		this.arrayPalavra = arrayPalavra;
+	}
+
+	public Palavra getPalavra() {
+		return palavra;
+	}
+
+	public void setPalavra(Palavra palavra) {
+		this.palavra = palavra;
 	}
 
 	public int getAcertos() {

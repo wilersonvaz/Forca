@@ -1,11 +1,37 @@
 package com.example.forca.Model;
 
-public class Palavra {
+import java.io.Serializable;
+
+public class Palavra implements Serializable {
     Identificador identificador;
     int idPalavra;
     String palavra;
     String urlPalavra;
     int qtdeLetras;
+    boolean acertou;
+
+    public Palavra(int idPalavra, String palavra, int qtdeLetras) {
+        this.idPalavra = idPalavra;
+        this.palavra = palavra;
+        this.qtdeLetras = qtdeLetras;
+    }
+
+    public Palavra() {
+
+    }
+
+    public Palavra(String palavra, Boolean acertouPalavra) {
+        this.palavra = palavra;
+        this.acertou = acertouPalavra;
+    }
+
+    public boolean isAcertou() {
+        return acertou;
+    }
+
+    public void setAcertou(boolean acertou) {
+        this.acertou = acertou;
+    }
 
     public Identificador getIdentificador() {
         return identificador;

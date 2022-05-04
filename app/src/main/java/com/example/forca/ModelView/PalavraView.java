@@ -35,19 +35,22 @@ public class PalavraView {
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestProperty("Content-Type","application/json;charset=utf-8");
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
+
             if (inputStream == null) {
               return null;
             }
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
 
             
             String linha;
             while ((linha = reader.readLine()) != null) {
                 try {
+
                     buffer.append(linha);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -58,7 +61,6 @@ public class PalavraView {
 
             s = s.replace("[","");
             s = s.replace("]","");
-
 
             JSONObject jsonObj = new JSONObject(s);
 

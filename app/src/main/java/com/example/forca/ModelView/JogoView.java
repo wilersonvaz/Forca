@@ -1,9 +1,8 @@
 package com.example.forca.ModelView;
 
-import android.util.Log;
-
 import com.example.forca.Model.Jogo;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class JogoView<jogo> {
@@ -34,17 +33,15 @@ public class JogoView<jogo> {
 
 			for (int i = 0; i <  this.plvTela.length(); i++){
 				arrayPalavra.add( Character.toString( this.plvTela.charAt(i) ) );
-				// Log.i("Log # ", "arrayPalavra iniciando com : "+arrayPalavra.get(i));
 			}
 
-			if((plvServidor.contains(letraDigitada) || plvServidor.contains( letraDigitada.toLowerCase() )) ){
+			String plvServidorFormatada = Normalizer.normalize( this.plvServidor , Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+
+			if((plvServidorFormatada.contains(letraDigitada) || plvServidorFormatada.contains( letraDigitada.toLowerCase() )) ){
 				// Log.i("Log # ", "A letra "+letraDigitada+" existe e a plvTela agora é: "+plvTela);
-				
 				for(int i = 0; i < this.plvServidor.length(); i++){
-					// Log.i("Log # ", "Letra do servidor: "+this.plvServidor.charAt(i)+" "+Character.toLowerCase( this.plvServidor.charAt(i) )+" substring: "+this.plvServidor.substring(i,i+1)+" letra digitada: "+letraDigitada);
-					
-		 			if( ( letraDigitada.equals( Character.toString( this.plvServidor.charAt(i) ))) || (letraDigitada.toLowerCase().equals( Character.toString( this.plvServidor.charAt(i) )))) {
-						// Log.i("Log # ", "A letra "+letraDigitada+" existe, Adicionando a letra: "+Character.toString( this.plvServidor.charAt(i))+" no arrayPalavra");
+					String letraFormatada = Normalizer.normalize( Character.toString( this.plvServidor.charAt(i) ) , Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+					if( ( letraDigitada.equals(  letraFormatada )) || (letraDigitada.toLowerCase().equals(  letraFormatada ) )) {
 						arrayPalavra.set(i, Character.toString( this.plvServidor.charAt(i)) );
 					}					
 				}
